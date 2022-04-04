@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406089011854",
+    "project_id": "clash-decks",
+    "storage_bucket": "clash-decks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406089011854:android:804c77cac437c27d236fdf",
+        "android_client_info": {
+          "package_name": "com.evinc.clashdecks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406089011854-2n5p1oifrkldouo5qlu8uj66eoj2r9ta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByoKO-ZBDRmVLQKhuVNrdgkXWUmms6p4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406089011854-2n5p1oifrkldouo5qlu8uj66eoj2r9ta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
