@@ -21,7 +21,7 @@ class SplashControllerImpl implements SplashController {
       case true:
         break;
       case false:
-        Modular.to.popAndPushNamed(RoutesUtil.login);
+        Modular.to.popAndPushNamed(RoutesUtil.initial);
     }
   }
 }

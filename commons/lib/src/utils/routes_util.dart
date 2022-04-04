@@ -1,3 +1,4 @@
 abstract class RoutesUtil {
-  static String login = "/login";
+  static String initial = "/initial";
+  static String register = '/register/';
 }

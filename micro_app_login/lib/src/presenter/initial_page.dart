@@ -1,9 +1,13 @@
+import 'package:commons_dependencies/commons_dependencies.dart';
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:micro_app_login/src/presenter/initial_controller.dart';
 
 class InitialPage extends StatelessWidget {
-  const InitialPage({Key? key}) : super(key: key);
+  final InitialController controller = Modular.get();
+
+   InitialPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,7 @@ class InitialPage extends StatelessWidget {
                 "Register",
                 style: TextStyle(color: Colors.black),
               ),
-              onPressed: () {},
+              onPressed: controller.toRegister,
               primaryColor: Colors.white,
             ),
             const SizedBox(

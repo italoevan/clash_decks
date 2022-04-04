@@ -10,14 +10,13 @@ class SplashModule extends Module {
         Bind((i) => IsLoggedDatasourceImpl()),
         Bind((i) => IsLoggedRepositoryImpl(i.get())),
         Bind((i) => IsLoggedUsecaseImpl(i.get())),
-        Bind((i)=> SplashControllerImpl(i.get()))
+        Bind((i) => SplashControllerImpl(i.get()))
       ];
 
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, arg) =>  SplashPage()),
-            ModuleRoute(RoutesUtil.login, module: MicroAppLoginModule() )
-        
+            child: (context, arg) => const SplashPage()),
+        ModuleRoute(RoutesUtil.initial, module: MicroAppLoginModule())
       ];
 }
