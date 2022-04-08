@@ -9,13 +9,21 @@ import 'src/presenter/register/register_page.dart';
 class MicroAppLoginModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory<RegisterController>((i) => RegisterControllerImpl()),
+        Bind.factory(
+            (i) => FirebaseCadasterDatasource(auth: FirebaseAuth.instance)),
+        Bind.factory((i) => CadasterRepositoryImpl(Modular.get())),
+        Bind.factory<CadasterUsecase>(
+            (i) => CadasterUsecaseImpl(Modular.get())),
+        Bind.factory<RegisterController>(
+            (i) => RegisterControllerImpl(Modular.get())),
         Bind.factory<InitialController>((i) => InitialControllerImpl()),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute(Modular.initialRoute, child: (context, arg) => InitialPage()),
-        ChildRoute(RoutesUtil.register, child: (context, arg) => RegisterPage()),
+        ChildRoute(Modular.initialRoute,
+            child: (context, arg) => InitialPage()),
+        ChildRoute(RoutesUtil.register,
+            child: (context, arg) => RegisterPage()),
       ];
 }

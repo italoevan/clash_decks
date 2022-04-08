@@ -5,3 +5,6 @@ export 'package:firebase_core/firebase_core.dart';
 
 export 'package:mocktail/mocktail.dart';
 export 'package:google_fonts/google_fonts.dart';
+
+//State Maneger
+export 'package:get/get.dart' hide CustomTransition, RouterOutlet;

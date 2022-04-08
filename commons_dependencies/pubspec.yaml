@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #State_manager
+  get:
+  
   #Dependencies
   flutter_modular: ^4.5.0
   dartz: ^0.10.1
