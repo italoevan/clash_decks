@@ -3,5 +3,5 @@ import 'package:commons/src/domain/entities/user.dart' as User;
 
 
 abstract class CadasterDatasource {
-  Future<Either<Exception, void>?>? cadaster(User.User user);
+  Future<Either<Exception, UserCredential>?>? cadaster(User.User user);
 }
