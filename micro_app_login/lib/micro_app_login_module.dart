@@ -1,5 +1,6 @@
 import 'package:commons/commons.dart';
 import 'package:commons_dependencies/commons_dependencies.dart';
+import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/src/presenter/initial_controller.dart';
 import 'package:micro_app_login/src/presenter/register/register_page_controller.dart';
 
@@ -25,5 +26,6 @@ class MicroAppLoginModule extends Module {
             child: (context, arg) => InitialPage()),
         ChildRoute(RoutesUtil.register,
             child: (context, arg) => RegisterPage()),
+        ModuleRoute(RoutesUtil.home, module: MicroAppHomeModule())
       ];
 }

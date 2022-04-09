@@ -19,6 +19,8 @@ dependencies:
   micro_app_splash:
     path: ../micro_app_splash
 
+  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

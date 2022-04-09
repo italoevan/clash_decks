@@ -9,7 +9,9 @@ abstract class RegisterController {
 
 class RegisterControllerImpl implements RegisterController {
   late common.User user;
+
   final common.CadasterUsecase cadasterUsecase;
+
   Rx<RegisterState> state = Rx(const WaitigDataRegisterState());
 
   RegisterControllerImpl(this.cadasterUsecase);
@@ -19,11 +21,17 @@ class RegisterControllerImpl implements RegisterController {
 
   RegisterState setRs(RegisterState st) => state.value = st;
 
+  void _navigateToHome() {
+    Modular.to.pushNamed(common.RoutesUtil.initial + common.RoutesUtil.home);
+  }
+
   @override
   Future register() async {
-    
-    var response = await cadasterUsecase.cadaster(user);
+    setRs(const LoadingDataRegisterState());
+    var response = await cadasterUsecase
+        .cadaster(common.User(email: "igbehh@gmail.com", password: "italo445")); //TODO remove
+    setRs(const WaitigDataRegisterState());
 
-    response!.fold((l) => null, (r) => null);
+    response!.fold((l) => print("nada"), (r) => _navigateToHome());
   }
 }
