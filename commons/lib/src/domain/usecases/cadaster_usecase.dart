@@ -18,7 +18,7 @@ class CadasterUsecaseImpl implements CadasterUsecase {
   Future<Either<Exception, UserCredential>?>? cadaster(user.User user) async {
     var response = await repository.cadaster(user);
 
-    response!.fold((l) => null, (r) => null);
+    response?.fold((l) => null, (r) => null);
   }
 
   @override

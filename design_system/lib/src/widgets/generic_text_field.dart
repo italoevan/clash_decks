@@ -6,11 +6,13 @@ class GenericTextField extends TextFormField {
       {Key? key,
       TextEditingController? controller,
       Icon? icon,
+      String? Function(String? value)? validator,
       bool obscureText = false,
       void Function(String)? onChanged})
       : super(
             key: key,
             onChanged: onChanged,
+            validator: validator ,
             obscureText: obscureText,
             decoration: InputDecoration(
               icon: icon,

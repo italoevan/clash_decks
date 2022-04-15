@@ -1,18 +1,27 @@
 import 'package:commons/commons.dart' as common;
 import 'package:commons_dependencies/commons_dependencies.dart';
+import 'package:flutter/material.dart';
 import 'package:micro_app_login/src/presenter/register/states/register_state.dart';
 
 abstract class RegisterController {
   RegisterState get registerState;
-  Future register();
+  TextEditingController get emailController;
+  TextEditingController get passwordController;
+  Future register(GlobalKey<FormState> form, BuildContext context);
 }
 
 class RegisterControllerImpl implements RegisterController {
-  late common.User user;
+  late common.User _user;
 
   final common.CadasterUsecase cadasterUsecase;
 
   Rx<RegisterState> state = Rx(const WaitigDataRegisterState());
+
+  @override
+  TextEditingController emailController = TextEditingController();
+
+  @override
+  TextEditingController passwordController = TextEditingController();
 
   RegisterControllerImpl(this.cadasterUsecase);
 
@@ -26,12 +35,16 @@ class RegisterControllerImpl implements RegisterController {
   }
 
   @override
-  Future register() async {
-    setRs(const LoadingDataRegisterState());
-    var response = await cadasterUsecase
-        .cadaster(common.User(email: "igbehh@gmail.com", password: "italo445")); //TODO remove
-    setRs(const WaitigDataRegisterState());
+  Future register(GlobalKey<FormState> form, BuildContext context) async {
+    if (form.currentState!.validate()) {
+      setRs(const LoadingDataRegisterState());
 
-    response!.fold((l) => print("nada"), (r) => _navigateToHome());
+      var response = await cadasterUsecase.cadaster(
+          common.User(email: "igbehh@gmail.com", password: "italo445"));
+      setRs(const WaitigDataRegisterState());
+
+      response?.fold((l) => print("nada"), (r) => _navigateToHome());
+      return;
+    }
   }
 }

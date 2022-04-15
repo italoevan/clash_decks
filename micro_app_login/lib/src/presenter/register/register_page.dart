@@ -6,8 +6,8 @@ import 'package:micro_app_login/src/presenter/register/states/register_state.dar
 
 class RegisterPage extends StatelessWidget {
   final RegisterController controller = Modular.get();
-
   RegisterState get statee => controller.registerState;
+  final GlobalKey<FormState> form = GlobalKey();
 
   RegisterPage({Key? key}) : super(key: key);
 
@@ -24,23 +24,37 @@ class RegisterPage extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
 
                     default:
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          for (var item in buildIntroduction(context)) item,
-                          const SizedBox(height: 24),
-                          GenericTextField(),
-                          const SizedBox(height: 16),
-                          GenericTextField(
-                            obscureText: true,
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          GenericButton(
-                              child: const Text("Register"),
-                              onPressed: () => controller.register())
-                        ],
+                      return Form(
+                        key: form,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            for (var item in buildIntroduction(context)) item,
+                            const SizedBox(height: 24),
+                            GenericTextField(
+                              controller: controller.emailController,
+                              validator: (v) {
+                                if (!v!.contains("@") || v.length < 7) {
+                                  return "Email inválido";
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 16),
+                            GenericTextField(
+                              controller: controller.passwordController,
+                              obscureText: true,
+                              validator: (v) {},
+                            ),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            GenericButton(
+                                child: const Text("Register"),
+                                onPressed: () =>
+                                    controller.register(form, context))
+                          ],
+                        ),
                       );
                   }
                 }))));

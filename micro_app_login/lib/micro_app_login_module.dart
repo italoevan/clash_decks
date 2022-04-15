@@ -2,6 +2,7 @@ import 'package:commons/commons.dart';
 import 'package:commons_dependencies/commons_dependencies.dart';
 import 'package:micro_app_home/micro_app_home.dart';
 import 'package:micro_app_login/src/presenter/initial_controller.dart';
+import 'package:micro_app_login/src/presenter/login/login_controller.dart';
 import 'package:micro_app_login/src/presenter/register/register_page_controller.dart';
 
 import 'src/presenter/initial_page.dart';
@@ -18,6 +19,7 @@ class MicroAppLoginModule extends Module {
         Bind.factory<RegisterController>(
             (i) => RegisterControllerImpl(Modular.get())),
         Bind.factory<InitialController>((i) => InitialControllerImpl()),
+        Bind<LoginController>((i) => LoginControllerImpl())
       ];
 
   @override
