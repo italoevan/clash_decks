@@ -10,7 +10,7 @@ class CadasterRepositoryImpl implements CadasterRepository {
   CadasterRepositoryImpl(this.datasource);
 
   @override
-  Future<Either<Exception, UserCredential>?>? cadaster(user.User user) async {
+  Future<Either<Exception, UserCredential>?>? cadaster(user.Usuario user) async {
     return await datasource.cadaster(user);
   }
 

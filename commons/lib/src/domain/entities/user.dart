@@ -1,10 +1,10 @@
-class User {
+class Usuario {
   final String? name;
   final String email;
   final String password;
   final String? friendlyLink;
 
-  User({
+  Usuario({
     this.name,
     required this.email,
     required this.password,

@@ -9,3 +9,8 @@ class WaitigDataRegisterState extends RegisterState {
 class LoadingDataRegisterState extends RegisterState {
   const LoadingDataRegisterState();
 }
+
+class ErrorRegisterState  extends RegisterState{
+  final String? message;
+  const ErrorRegisterState([this.message]);
+}

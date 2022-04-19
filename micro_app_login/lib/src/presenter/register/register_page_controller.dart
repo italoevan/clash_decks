@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:commons/commons.dart' as common;
 import 'package:commons_dependencies/commons_dependencies.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,6 @@ abstract class RegisterController {
 }
 
 class RegisterControllerImpl implements RegisterController {
-  late common.User _user;
-
   final common.CadasterUsecase cadasterUsecase;
 
   Rx<RegisterState> state = Rx(const WaitigDataRegisterState());
@@ -28,7 +28,7 @@ class RegisterControllerImpl implements RegisterController {
   @override
   RegisterState get registerState => state.value;
 
-  RegisterState setRs(RegisterState st) => state.value = st;
+  RegisterState setCurrentState(RegisterState st) => state.value = st;
 
   void _navigateToHome() {
     Modular.to.pushNamed(common.RoutesUtil.initial + common.RoutesUtil.home);
@@ -37,14 +37,31 @@ class RegisterControllerImpl implements RegisterController {
   @override
   Future register(GlobalKey<FormState> form, BuildContext context) async {
     if (form.currentState!.validate()) {
-      setRs(const LoadingDataRegisterState());
+      setCurrentState(const LoadingDataRegisterState());
 
-      var response = await cadasterUsecase.cadaster(
-          common.User(email: "igbehh@gmail.com", password: "italo445"));
-      setRs(const WaitigDataRegisterState());
+      common.Usuario user = createUser();
 
-      response?.fold((l) => print("nada"), (r) => _navigateToHome());
+      var response = await cadasterUsecase
+          .cadaster(common.Usuario(email: user.email, password: user.password));
+
+      setCurrentState(const WaitigDataRegisterState());
+
+      print(response);
+
+      response!.fold((l) => showError(l.toString()), (r) => _navigateToHome());
       return;
     }
+  }
+
+  void showError(String message) {
+    setCurrentState(ErrorRegisterState(message));
+    
+    Timer(const Duration(seconds: 4),
+        () => setCurrentState(const WaitigDataRegisterState()));
+  }
+
+  common.Usuario createUser() {
+    return common.Usuario(
+        email: emailController.text, password: passwordController.text);
   }
 }

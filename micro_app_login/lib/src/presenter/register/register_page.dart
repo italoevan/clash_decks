@@ -52,7 +52,10 @@ class RegisterPage extends StatelessWidget {
                             GenericButton(
                                 child: const Text("Register"),
                                 onPressed: () =>
-                                    controller.register(form, context))
+                                    controller.register(form, context)),
+                            statee is ErrorRegisterState
+                                ? Text((statee as ErrorRegisterState).message!)
+                                : const SizedBox()
                           ],
                         ),
                       );

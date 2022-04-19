@@ -4,8 +4,7 @@ import 'package:commons_dependencies/commons_dependencies.dart';
 import '../entities/user.dart' as user;
 
 abstract class CadasterUsecase {
-  Future<Either<Exception, UserCredential>?>? cadaster(user.User user);
-  void navigateToHome();
+  Future<Either<Exception, UserCredential>?>? cadaster(user.Usuario user);
 }
 
 class CadasterUsecaseImpl implements CadasterUsecase {
@@ -15,14 +14,11 @@ class CadasterUsecaseImpl implements CadasterUsecase {
   CadasterUsecaseImpl(this.repository);
 
   @override
-  Future<Either<Exception, UserCredential>?>? cadaster(user.User user) async {
+  Future<Either<Exception, UserCredential>?>? cadaster(
+      user.Usuario user) async {
     var response = await repository.cadaster(user);
 
-    response?.fold((l) => null, (r) => null);
+    return response;
   }
 
-  @override
-  void navigateToHome(){
-    
-  }
 }

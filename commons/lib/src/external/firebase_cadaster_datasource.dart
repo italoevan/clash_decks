@@ -8,7 +8,7 @@ class FirebaseCadasterDatasource implements CadasterDatasource {
   FirebaseCadasterDatasource({required this.auth});
 
   @override
-  Future<Either<Exception, UserCredential>?>? cadaster(User.User user) async {
+  Future<Either<Exception, UserCredential>?>? cadaster(User.Usuario user) async {
     try {
       var response = await auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
